@@ -1,0 +1,24 @@
+@if (open()) {
+  <div class="modal-container">
+    <div class="modal">
+      <button class="close-btn" (click)="closeModal()">
+        <ng-icon name="heroXMark" size="1.5em"></ng-icon>
+      </button>
+      <h2>Create Post</h2>
+      <form>
+        <div class="field">
+          <label for="title">Title</label>
+          <input type="text" id="title" placeholder="Title" required>
+        </div>
+        <div class="field">
+          <label for="body">Body</label>
+          <textarea id="body" rows="3" placeholder="Type your body here..." required></textarea>
+        </div>
+        <div class="form-btns">
+          <button class="primary" type="submit">Create</button>
+          <button class="secondary" type="button" (click)="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+}

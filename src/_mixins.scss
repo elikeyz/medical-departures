@@ -1,0 +1,10 @@
+@mixin inter-tight() {
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+}
+
+@mixin inter() {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-variation-settings: "slnt" 0;
+}
