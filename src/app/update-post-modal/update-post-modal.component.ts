@@ -3,13 +3,13 @@ import { Component, input, OnChanges, output, SimpleChanges } from '@angular/cor
 import { ToastrService } from 'ngx-toastr';
 import { Post } from '../app.component';
 import { ModalComponent } from '../modal/modal.component';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-update-post-modal',
   standalone: true,
-  imports: [ModalComponent, FormsModule],
+  imports: [ModalComponent, ReactiveFormsModule],
   templateUrl: './update-post-modal.component.html',
   styleUrl: './update-post-modal.component.scss'
 })
@@ -23,13 +23,17 @@ export class UpdatePostModalComponent implements OnChanges {
 
   submitting = false;
 
-  title = '';
-  body = '';
+  editPostForm = new FormGroup({
+    title: new FormControl('', [Validators.required]),
+    body: new FormControl('', [Validators.required]),
+  });
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['post'].currentValue) {
-      this.title = changes['post'].currentValue.title;
-      this.body = changes['post'].currentValue.body;
+      this.editPostForm.setValue({
+        title: changes['post'].currentValue.title,
+        body: changes['post'].currentValue.body,
+      });
     }
   }
 
@@ -41,8 +45,8 @@ export class UpdatePostModalComponent implements OnChanges {
     const body = {
       id: this.post()?.id,
       userId: this.post()?.userId,
-      ...(this.title.trim() && { title: this.title.trim() }),
-      ...(this.body.trim() && { body: this.body.trim() }),
+      title: this.editPostForm.value.title,
+      body: this.editPostForm.value.body,
     };
 
     this.submitting = true;
