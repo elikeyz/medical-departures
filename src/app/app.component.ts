@@ -6,6 +6,7 @@ import { CreatePostModalComponent } from './create-post-modal/create-post-modal.
 import { UpdatePostModalComponent } from './update-post-modal/update-post-modal.component';
 import { catchError, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { DeletePostModalComponent } from './delete-post-modal/delete-post-modal.component';
 
 export interface Post {
   id: number;
@@ -22,6 +23,7 @@ export interface Post {
     NgIcon,
     CreatePostModalComponent,
     UpdatePostModalComponent,
+    DeletePostModalComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -31,6 +33,7 @@ export class AppComponent implements OnInit {
   posts: Post[] = [];
   openCreateModal = false;
   openUpdateModal = false;
+  openDeleteModal = false;
   selectedPost: Post | null = null;
 
   ngOnInit() {
@@ -38,7 +41,7 @@ export class AppComponent implements OnInit {
     .pipe(
       catchError(error => {
         this.toastr.error(error.message);
-        return throwError(error);
+        return throwError(() => error);
       })
     )
     .subscribe(result => this.posts = result as Post[]);
@@ -61,6 +64,18 @@ export class AppComponent implements OnInit {
     const updatedPosts = [...this.posts];
     const postIndex = updatedPosts.findIndex(({ id }) => post.id === id);
     updatedPosts.splice(postIndex, 1, post);
+    this.posts = updatedPosts;
+  }
+
+  deletePost(post: Post) {
+    this.selectedPost = post;
+    this.openDeleteModal = true;
+  }
+
+  removePost(postId: number) {
+    const updatedPosts = [...this.posts];
+    const postIndex = updatedPosts.findIndex(({ id }) => postId === id);
+    updatedPosts.splice(postIndex, 1);
     this.posts = updatedPosts;
   }
 }

@@ -51,7 +51,7 @@ export class UpdatePostModalComponent implements OnChanges {
       .pipe(
         catchError(error => {
           this.toastr.error(error.message);
-          return throwError(error);
+          return throwError(() => error);
         })
       )
       .subscribe(() => {

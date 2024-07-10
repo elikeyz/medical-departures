@@ -21,7 +21,7 @@
             <button (click)="updatePost(post)">
               <ng-icon name="heroPencil" size="1.2em"></ng-icon>
             </button>
-            <button>
+            <button (click)="deletePost(post)">
               <ng-icon name="heroTrash" size="1.2em"></ng-icon>
             </button>
           </div>
@@ -42,3 +42,9 @@
   (onClose)="openUpdateModal = false;"
   (onUpdate)="editPost($event)">
 </app-update-post-modal>
+<app-delete-post-modal
+  [open]="openDeleteModal"
+  [post]="selectedPost"
+  (onClose)="openDeleteModal = false;"
+  (onDelete)="removePost($event)">
+</app-delete-post-modal>
