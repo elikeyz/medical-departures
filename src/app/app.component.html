@@ -18,7 +18,7 @@
             <p>{{ post.body }}</p>
           </article>
           <div class="btns">
-            <button>
+            <button (click)="updatePost(post)">
               <ng-icon name="heroPencil" size="1.2em"></ng-icon>
             </button>
             <button>
@@ -31,4 +31,14 @@
   </section>
 </main>
 
-<app-create-post-modal [open]="openCreateModal" (onClose)="openCreateModal = false;"></app-create-post-modal>
+<app-create-post-modal
+  [open]="openCreateModal"
+  (onClose)="openCreateModal = false;"
+  (onCreate)="addNewPost($event)">
+</app-create-post-modal>
+<app-update-post-modal
+  [open]="openUpdateModal"
+  [post]="selectedPost"
+  (onClose)="openUpdateModal = false;"
+  (onUpdate)="editPost($event)">
+</app-update-post-modal>

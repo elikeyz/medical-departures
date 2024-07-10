@@ -1,5 +1,5 @@
-<app-modal [open]="open()" (onClose)="onClose" title="Create Post">
-  <form (ngSubmit)="createPost()" #postForm="ngForm">
+<app-modal [open]="open()" (onClose)="onClose" title="Update Post">
+  <form (ngSubmit)="updatePost()" #postForm="ngForm">
     <div class="field">
       <label for="title">Title</label>
       <input type="text" id="title" name="title" placeholder="Title" [(ngModel)]="title" required>
@@ -9,7 +9,7 @@
       <textarea id="body" name="body" rows="3" placeholder="Type your body here..." [(ngModel)]="body" required></textarea>
     </div>
     <div class="form-btns">
-      <button class="primary" type="submit" [disabled]="submitting">{{ submitting ? 'Creating...' : 'Create' }}</button>
+      <button class="primary" type="submit" [disabled]="submitting">{{ submitting ? 'Updating...' : 'Update' }}</button>
       <button class="secondary" type="button" (click)="closeModal()">Cancel</button>
     </div>
   </form>

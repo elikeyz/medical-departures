@@ -1,0 +1,11 @@
+@if (open()) {
+  <div class="modal-container">
+    <div class="modal">
+      <button class="close-btn" (click)="closeModal()">
+        <ng-icon name="heroXMark" size="1.5em"></ng-icon>
+      </button>
+      <h2>{{ title() }}</h2>
+      <ng-content></ng-content>
+    </div>
+  </div>
+}
