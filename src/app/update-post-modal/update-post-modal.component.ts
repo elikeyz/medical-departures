@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, input, OnChanges, output, SimpleChanges } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { catchError, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Post } from '../app.component';
 import { ModalComponent } from '../modal/modal.component';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-update-post-modal',
@@ -29,7 +29,7 @@ export class UpdatePostModalComponent implements OnChanges {
   });
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['post'].currentValue) {
+    if (changes['post']?.currentValue) {
       this.editPostForm.setValue({
         title: changes['post'].currentValue.title,
         body: changes['post'].currentValue.body,

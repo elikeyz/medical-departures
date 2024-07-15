@@ -9,7 +9,7 @@ import { NgIcon } from '@ng-icons/core';
   styleUrl: './modal.component.scss'
 })
 export class ModalComponent {
-  open = input(false);
+  open = input();
   title = input('');
   onClose = output();
 

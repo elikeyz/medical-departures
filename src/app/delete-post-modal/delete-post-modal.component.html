@@ -1,4 +1,4 @@
-<app-modal [open]="open()" (onClose)="onClose.emit($event)" title="Delete Post">
+<app-modal [open]="open()" (onClose)="closeModal()" title="Delete Post">
   <p class="desc">Are you sure you want to delete this item?</p>
   <div class="modal-btns">
     <button class="primary" (click)="deletePost()" [disabled]="deleting">{{ deleting ? 'Deleting...' : 'Delete' }}</button>

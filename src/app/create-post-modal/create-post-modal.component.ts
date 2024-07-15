@@ -1,10 +1,10 @@
 import { Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ModalComponent } from '../modal/modal.component';
 import { HttpClient } from '@angular/common/http';
+import { catchError, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Post } from '../app.component';
-import { catchError, throwError } from 'rxjs';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-create-post-modal',

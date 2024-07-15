@@ -1,4 +1,4 @@
-<app-modal [open]="open()" (onClose)="onClose.emit($event)" title="Create Post">
+<app-modal [open]="open()" (onClose)="closeModal()" title="Create Post">
   <form (ngSubmit)="createPost()" #postForm="ngForm">
     <div class="field">
       <label for="title">Title</label>
